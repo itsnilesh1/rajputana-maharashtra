@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cinzel: 'Cinzel', serif;
+  --font-crimson: 'Crimson Pro', serif;
+  --font-inter: 'Inter', sans-serif;
+  --gold: #C9A84C;
+  --gold-light: #E8C45A;
+  --gold-dim: rgba(201, 168, 76, 0.3);
+  --maroon: #7B1C2C;
+  --crimson: #9B1D30;
+  --royal-black: #0A0A0B;
+  --royal-dark: #1A1A1F;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) var(--royal-black);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--royal-black); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+@layer components {
+  .gold-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, #C9A84C, #E8C45A, #C9A84C);
+  }
+
+  .gold-border {
+    border: 1px solid rgba(201, 168, 76, 0.3);
+  }
+
+  .royal-card {
+    @apply bg-royal-dark border border-gold-dim rounded-xl;
+    background: linear-gradient(145deg, rgba(26,26,31,0.95), rgba(10,10,11,0.95));
+  }
+
+  .btn-royal {
+    @apply px-6 py-3 font-display text-sm uppercase tracking-widest transition-all duration-300;
+    background: linear-gradient(135deg, #C9A84C, #E8C45A);
+    color: #0A0A0B;
+    border: none;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201, 168, 76, 0.4);
+    }
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 font-display text-sm uppercase tracking-widest transition-all duration-300;
+    background: transparent;
+    color: #C9A84C;
+    border: 1px solid rgba(201, 168, 76, 0.5);
+    &:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: #C9A84C;
+    }
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-bold text-royal-light mb-3;
+  }
+
+  .section-subtitle {
+    @apply font-serif text-lg text-royal-cream/60;
+  }
+
+  .divider-gold {
+    @apply relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+      margin: 16px auto;
+    }
+  }
+
+  .status-pending {
+    @apply bg-yellow-900/30 text-yellow-400 border border-yellow-800/50;
+  }
+  .status-approved {
+    @apply bg-green-900/30 text-green-400 border border-green-800/50;
+  }
+  .status-rejected {
+    @apply bg-red-900/30 text-red-400 border border-red-800/50;
+  }
+  .status-revision {
+    @apply bg-blue-900/30 text-blue-400 border border-blue-800/50;
+  }
+
+  .nav-link {
+    @apply relative text-sm font-display tracking-wider text-royal-cream/70 hover:text-royal-gold transition-colors duration-200;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C9A84C;
+      transition: width 0.3s ease;
+    }
+    &:hover::after { width: 100%; }
+  }
+
+  .pattern-overlay {
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(123, 28, 44, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(123, 28, 44, 0.06) 0%, transparent 50%);
+  }
+}
+
+/* Animations */
+@keyframes shimmerAnim {
+  0% { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+.shimmer-loading {
+  background: linear-gradient(90deg, #1A1A1F 25%, #222228 50%, #1A1A1F 75%);
+  background-size: 500px 100%;
+  animation: shimmerAnim 1.5s infinite;
+}
+
+.prose-royal {
+  color: rgba(255, 248, 231, 0.85);
+  line-height: 1.9;
+  font-family: var(--font-crimson);
+  font-size: 1.125rem;
+}
+.prose-royal h2 { color: #E8C45A; margin-top: 2rem; font-family: var(--font-cinzel); }
+.prose-royal h3 { color: #C9A84C; margin-top: 1.5rem; font-family: var(--font-cinzel); }
+.prose-royal strong { color: #F5D98A; }
+.prose-royal blockquote {
+  border-left: 3px solid #C9A84C;
+  padding-left: 1.5rem;
+  color: rgba(255,248,231,0.65);
+  font-style: italic;
+}
